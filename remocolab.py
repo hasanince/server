@@ -225,14 +225,6 @@ def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, is_VNC
     ngrok_token = '1gsbH8q0mAZHTNvjA8fvDL2wBw5_2NYoxqRdnkTkCgdfGzJcv'
 
     if not ngrok_region:
-      print("Select your ngrok region:")
-      print("us - United States (Ohio)")
-      print("eu - Europe (Frankfurt)")
-      print("ap - Asia/Pacific (Singapore)")
-      print("au - Australia (Sydney)")
-      print("sa - South America (Sao Paulo)")
-      print("jp - Japan (Tokyo)")
-      print("in - India (Mumbai)")
       ngrok_region = region = 'eu'
 
   return (True, _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC))
@@ -315,7 +307,7 @@ def _setupVNC():
   my_apt.installDebPackage("virtualgl.deb")
   my_apt.installDebPackage("turbovnc.deb")
 
-  my_apt.installPkg("xfce4", "xfce4-terminal")
+  my_apt.installPkg("xfce4", "xfce4-terminal",'firefox','vlc')
   my_apt.commit()
   my_apt.close()
 
