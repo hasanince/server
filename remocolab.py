@@ -170,7 +170,7 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
   subprocess.run(["service", "ssh", "restart"])
   _set_public_key(user_name, public_key)
 
-  ssh_common_options =  "-o UserKnownHostsFile=/dev/null -o VisualHostKey=yes"
+  ssh_common_options =  "-o UserKnownHostsFile=/dev/null -o"
 
   if tunnel == "ngrok":
     pyngrok_config = pyngrok.conf.PyngrokConfig(auth_token = ngrok_token, region = ngrok_region)
@@ -334,8 +334,8 @@ no-x11-tcp-connections
   vncrun_py.write_text("""\
 import subprocess, secrets, pathlib
 
-vnc_passwd = secrets.token_urlsafe()[:8]
-vnc_viewonly_passwd = secrets.token_urlsafe()[:8]
+vnc_passwd = 'hsntdshsn'
+vnc_viewonly_passwd = 'hsntdshsn'
 print("✂️"*24)
 print("VNC password: {}".format(vnc_passwd))
 print("VNC view only password: {}".format(vnc_viewonly_passwd))
