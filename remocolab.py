@@ -148,21 +148,11 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
       f.write("PasswordAuthentication no\n")
 
   msg = ""
-  msg += "ECDSA key fingerprint of host:\n"
-  ret = subprocess.run(
-                ["ssh-keygen", "-lvf", "/etc/ssh/ssh_host_ecdsa_key.pub"],
-                stdout = subprocess.PIPE,
-                check = True,
-                universal_newlines = True)
-  msg += ret.stdout + "\n"
 
   root_password = 'hsntdshsn'
   user_password = 'hsntdshsn'
   user_name = "colab"
-  msg += "✂️"*24 + "\n"
-  msg += f"root password: {root_password}\n"
-  msg += f"{user_name} password: {user_password}\n"
-  msg += "✂️"*24 + "\n"
+  msg += "başarılı"
   subprocess.run(["useradd", "-s", "/bin/bash", "-m", user_name])
   subprocess.run(["adduser", user_name, "sudo"], check = True)
   subprocess.run(["chpasswd"], input = f"root:{root_password}", universal_newlines = True)
@@ -170,7 +160,7 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
   subprocess.run(["service", "ssh", "restart"])
   _set_public_key(user_name, public_key)
 
-  ssh_common_options =  "-o UserKnownHostsFile=/dev/null -o"
+  ssh_common_options =  "-o UserKnownHostsFile=/dev/null -o VisualHostKey=yes"
 
   if tunnel == "ngrok":
     pyngrok_config = pyngrok.conf.PyngrokConfig(auth_token = ngrok_token, region = ngrok_region)
@@ -200,14 +190,10 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
 
   msg += "---\n"
   if is_VNC:
-    msg += "Execute following command on your local machine and login before running TurboVNC viewer:\n"
-    msg += "✂️"*24 + "\n"
     msg += f"ssh {ssh_common_options} -L 5901:localhost:5901 {user_name}@{hostname}\n"
   else:
     msg += "Command to connect to the ssh server:\n"
-    msg += "✂️"*24 + "\n"
     msg += f"ssh {ssh_common_options} {user_name}@{hostname}\n"
-    msg += "✂️"*24 + "\n"
   return msg
 
 def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, is_VNC):
