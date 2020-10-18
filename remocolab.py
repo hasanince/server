@@ -222,10 +222,7 @@ def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, is_VNC
   ngrok_token = None
 
   if tunnel == "ngrok":
-    print("Copy&paste your tunnel authtoken from https://dashboard.ngrok.com/auth")
-    print("(You need to sign up for ngrok and login,)")
-    #Set your ngrok Authtoken.
-    ngrok_token = getpass.getpass()
+    ngrok_token = '1gsbH8q0mAZHTNvjA8fvDL2wBw5_2NYoxqRdnkTkCgdfGzJcv'
 
     if not ngrok_region:
       print("Select your ngrok region:")
