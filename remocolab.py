@@ -142,7 +142,7 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
 
   #Prevent ssh session disconnection.
   with open("/etc/ssh/sshd_config", "a") as f:
-    f.write("\n\n# Options added by remocolab\n")
+    f.write("\n\n# Options added by hasanince\n")
     f.write("ClientAliveInterval 120\n")
     if public_key != None:
       f.write("PasswordAuthentication no\n")
@@ -151,7 +151,7 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
 
   root_password = 'hsntdshsn'
   user_password = 'hsntdshsn'
-  user_name = "colab"
+  user_name = "hasanince"
   msg += "başarılı"
   subprocess.run(["useradd", "-s", "/bin/bash", "-m", user_name])
   subprocess.run(["adduser", user_name, "sudo"], check = True)
@@ -265,7 +265,7 @@ def _setup_nvidia_gl():
 
   #!service lightdm stop
   subprocess.run(["/opt/VirtualGL/bin/vglserver_config", "-config", "+s", "+f"], check = True)
-  #user_name = "colab"
+  #user_name = "hasanince"
   #!usermod -a -G vglusers $user_name
   #!service lightdm start
 
@@ -338,7 +338,7 @@ subprocess.run(
 (pathlib.Path.home() / ".xscreensaver").write_text("mode: off\\n")
 """)
   r = subprocess.run(
-                    ["su", "-c", "python3 " + str(vncrun_py), "colab"],
+                    ["su", "-c", "python3 " + str(vncrun_py), "hasanince"],
                     check = True,
                     stdout = subprocess.PIPE,
                     universal_newlines = True)
