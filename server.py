@@ -211,7 +211,7 @@ def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, is_VNC
     ngrok_token = '1gsbH8q0mAZHTNvjA8fvDL2wBw5_2NYoxqRdnkTkCgdfGzJcv'
 
     if not ngrok_region:
-      ngrok_region = region = 'eu'
+      ngrok_region = region = 'us'
 
   return (True, _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC))
 
