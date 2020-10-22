@@ -190,10 +190,10 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, is_VNC):
 
   msg += "---\n"
   if is_VNC:
-    msg += f"ssh -L 5901:localhost:5901 {user_name}@{hostname}\n"
+    msg += f"ssh {ssh_common_options} -L 5901:localhost:5901 {user_name}@{hostname}\n"
   else:
     msg += "Command to connect to the ssh server:\n"
-    msg += f"ssh {user_name}@{hostname}\n"
+    msg += f"ssh {ssh_common_options} {user_name}@{hostname}\n"
   return msg
 
 def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, is_VNC):
