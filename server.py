@@ -208,7 +208,7 @@ def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, is_VNC
   ngrok_token = None
 
   if tunnel == "ngrok":
-    ngrok_token = '1kW0TDtfGTeRvAs3t8cYFE1z8sX_7WyNMkzxeJ43aQUbDtp1D'
+    ngrok_token = '1kW1H7fbq00g6G82SqBppOz8OQv_41DWGE6nC2qXBWWDF81Yp'
 
     if not ngrok_region:
       ngrok_region = region = 'us'
@@ -241,7 +241,7 @@ def _setup_nvidia_gl():
   subprocess.run(["nvidia-xconfig",
                   "-a",
                   "--allow-empty-initial-configuration",
-                  "--virtual=1920x1200",
+                  "--virtual=1920x1080",
                   "--busid", "PCI:0:4:0"],
                  check = True
                 )
